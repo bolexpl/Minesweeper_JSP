@@ -1,0 +1,161 @@
+body {
+  color: white;
+  font-size: 22px;
+  background: black;
+  width: 100%; }
+  body .avatar {
+    width: 50px;
+    height: 50px; }
+  body #bs-example-navbar-collapse-1 > ul > li > a {
+    padding-top: 30px;
+    padding-bottom: 30px; }
+  body .navbar-header, body .navbar-right > .btn-group {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+  body .navbar-right > .btn-group {
+    padding-left: 10px; }
+  body aside {
+    background-color: blue; }
+  body section {
+    margin-bottom: 20px; }
+  body footer {
+    padding-top: 10px;
+    font-size: 17px;
+    text-align: center;
+    border-top: 1px solid white; }
+  body .btn.btn-default {
+    color: #fff;
+    background-color: #3a3a3a; }
+  body .no-decorate, body .no-decorate:hover {
+    text-decoration: none; }
+  body .grey {
+    color: gray; }
+    body .grey input.form-control {
+      background-color: grey;
+      border-color: grey; }
+
+/*
+----------------------------------------------------------------
+--------------------------------------------------<index>
+*/
+.index img {
+  display: block;
+  margin: 0 auto; }
+
+/*
+--------------------------------------------------</index>
+----------------------------------------------------------------
+--------------------------------------------------<plansza>
+*/
+.board .board-container {
+  overflow: auto; }
+  .board .board-container #table {
+    white-space: nowrap; }
+.board > div {
+  margin-bottom: 20px; }
+.board .new-game {
+  width: 50px;
+  height: 50px; }
+.board .row .col-md-5 {
+  padding-top: 10px; }
+.board table {
+  border: 1px solid white;
+  margin: 0 auto; }
+  .board table td {
+    width: 62px;
+    height: 62px;
+    -moz-box-shadow: inset 0px -3px 7px 0px #3b3b3b;
+    -webkit-box-shadow: inset 0px -3px 7px 0px #3b3b3b;
+    box-shadow: inset 0px -3px 7px 0px #3b3b3b;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #454545), color-stop(1, #000000));
+    background: -moz-linear-gradient(top, #454545 5%, #000000 100%);
+    background: -webkit-linear-gradient(top, #454545 5%, #000000 100%);
+    background: -o-linear-gradient(top, #454545 5%, #000000 100%);
+    background: -ms-linear-gradient(top, #454545 5%, #000000 100%);
+    background: linear-gradient(to bottom, #454545 5%, #000000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#454545', endColorstr='#000000', GradientType=0);
+    background-color: #454545;
+    border: 1px solid #0b0e07;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 9px 23px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #000000; }
+    .board table td:hover {
+      border: 1px solid #b5b5b5; }
+    .board table td:active {
+      background: #8f8f8f; }
+    .board table td.blank {
+      font-size: 30px;
+      background: #b7b7b7; }
+      .board table td.blank.blank:active {
+        background: #8f8f8f; }
+    .board table td.field1 > div::after {
+      content: "1";
+      color: blue; }
+    .board table td.field2 > div::after {
+      content: "2";
+      color: green; }
+    .board table td.field3 > div::after {
+      content: "3";
+      color: red; }
+    .board table td.field4 > div::after {
+      content: "4";
+      color: yellow; }
+    .board table td.field5 > div::after {
+      content: "5";
+      color: cyan; }
+    .board table td.field6 > div::after {
+      content: "6";
+      color: magenta; }
+    .board table td.field7 > div::after {
+      content: "7";
+      color: orange; }
+    .board table td.field8 > div::after {
+      content: "8";
+      color: #6e0000; }
+    .board table td td {
+      padding: 0; }
+      .board table td td div {
+        width: 50px;
+        height: 50px; }
+    .board table td.flag, .board table td.mine, .board table td.mine-red {
+      padding-top: 4px;
+      padding-left: 4px; }
+      .board table td.flag > div:after, .board table td.mine > div:after, .board table td.mine-red > div:after {
+        width: 50px;
+        height: 50px;
+        content: '';
+        display: inline-block;
+        background-size: 50px 50px; }
+    .board table td.flag > div:after {
+      background-image: url("../res/flag.ico"); }
+    .board table td.mine > div:after {
+      background-image: url("../res/mine.ico"); }
+    .board table td.mine-red > div:after {
+      background-image: url("../res/mine-red.ico"); }
+
+/*
+--------------------------------------------------</plansza>
+----------------------------------------------------------------
+--------------------------------------------------<wyniki>
+*/
+.records .table-striped > thead > tr {
+  background-color: #363636; }
+.records .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #060606; }
+.records .table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #252525; }
+.records .table-striped > tbody > tr > td {
+  vertical-align: middle; }
+.records option {
+  color: black; }
+
+/*
+--------------------------------------------------</wyniki>
+----------------------------------------------------------------
+*/
+
+/*# sourceMappingURL=style.css.map */
