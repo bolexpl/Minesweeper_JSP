@@ -9,6 +9,8 @@
 
 <section class="index">
 
+    <a href="servlet/login">aaaaaa</a>
+
     <div class="row">
 
         <div class="col-md-12">
