@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class Tools {
 
-    public static String DB_HOST = "localhost";
-    public static String DB_NAME = "Minesweeper_Web";
-    public static String DB_USER = "root";
-    public static String DB_PASS = "";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/Minesweeper_Web";
+    public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+    public static final String DB_USER = "root";
+    public static final String DB_PASS = "";
 
     public static String generateRandomString() {
         return generateRandomString(10);
