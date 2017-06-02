@@ -1,17 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="row">
-    <div class="col-md-5 text-right"><span class="licznik">Pozostałe miny: <span id="countMines">99</span></span></div>
-    <div class="col-md-2">
+    <div class="col-xs-5 text-right"><span class="licznik">Pozostałe miny: <span id="countMines">99</span></span></div>
+    <div class="col-xs-2">
         <button class="center-block btn btn-default">
             <img src="res/smiley1.ico" alt="" class="new-game" id="new-game">
         </button>
     </div>
-    <div class="col-md-5"><span class="licznik">Czas: <span id="timer">0</span>s</span></div>
+    <div class="col-xs-5"><span class="licznik">Czas: <span id="timer">0</span>s</span></div>
 </div>
 
 <div class="row">
-    <div class="col-md-12 board-container">
+    <div class="col-xs-12 board-container">
         <table id="table">
             <tbody>
             </tbody>
@@ -20,7 +20,7 @@
 </div>
 <!--
 <div class="row">
-<div class="col-md-12">
+<div class="col-xs-12">
 <table>
 <tbody>
 <tr>
@@ -70,7 +70,7 @@
 </div>
 -->
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
         <button class="btn btn-default center-block" onclick="back()">
             Wróć
         </button>

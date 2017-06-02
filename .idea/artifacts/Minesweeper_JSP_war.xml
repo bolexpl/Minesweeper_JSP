@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Minesweeper_JSP:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/Minesweeper_JSP_war</output-path>
+    <root id="archive" name="Minesweeper_JSP_war.war">
+      <element id="artifact" artifact-name="Minesweeper_JSP:war exploded" />
+    </root>
+  </artifact>
+</component>

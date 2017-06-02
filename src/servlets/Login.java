@@ -1,5 +1,8 @@
 package servlets;
 
+import tools.BCrypt;
+import tools.Tools;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +15,8 @@ import java.sql.*;
 
 @WebServlet(name = "Login")
 public class Login extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-    }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
@@ -32,30 +32,56 @@ public class Login extends HttpServlet {
         String pass = request.getParameter("pass");
 
         Connection connection;
-        Statement statement;
-        String query;
+        PreparedStatement ps;
+        String sql;
         try {
-            query = "select * from users where login=" + login + ";";
+            sql = "select * from users where login=? or email=?;";
 
             Class.forName(Tools.DB_DRIVER).newInstance();
             connection = DriverManager.getConnection(Tools.DB_URL, Tools.DB_USER, Tools.DB_PASS);
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
 
-            while (resultSet.next()) {
-                out.print(resultSet.getInt("id") + " ");
-                out.print(resultSet.getString("login") + " ");
-                out.print(resultSet.getString("pass") + " ");
-                out.println(resultSet.getString("email"));
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, login);
+            ps.setString(2, login);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            if (resultSet.next()) {
+
+                String hash = resultSet.getString("pass");
+                hash = hash.substring(0, 2) + "a" + hash.substring(3);
+                if (BCrypt.checkpw(pass, hash)) {
+
+                    session.setAttribute("success","Zalogowano");
+                    session.setAttribute("id",resultSet.getString("id"));
+                    session.setAttribute("login",resultSet.getString("login"));
+                    session.setAttribute("avatar",resultSet.getString("avatar"));
+                }else{
+                    session.setAttribute("error","Zły login lub hasło");
+                }
+
+            } else {
+                session.setAttribute("error","Zły login lub hasło");
             }
 
-            statement.close();
+            ps.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
+            session.setAttribute("error","Błąd logowania");
         }
 
+        if(session.getAttribute("error") != null){
+            response.sendRedirect("../login_form.jsp");
+        }else{
+            if(request.getParameter("back") != null && request.getParameter("back").equals("game")){
+                response.sendRedirect("../game.jsp");
+            }else{
+                response.sendRedirect("../index.jsp");
+            }
+        }
+    }
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 }

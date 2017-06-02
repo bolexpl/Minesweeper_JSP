@@ -52,7 +52,7 @@
                         </li>
                     </ul>
                     <div class="btn-group" role="group">
-                        <a href="php/logout.php">
+                        <a href="/servlet/logout">
                             <button type="button" class="btn btn-default navbar-btn">
                                 Wyloguj
                             </button>
@@ -71,7 +71,7 @@
                         </a>
                     </div>
                     <div class="btn-group" role="group">
-                        <a href="register_form.php">
+                        <a href="register_form.jsp">
                             <button type="button" class="btn btn-default navbar-btn">
                                 Zarejestruj
                             </button>

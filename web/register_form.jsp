@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form method="post" action="php/register.php" enctype="multipart/form-data">
+        <form method="post" action="servlet/register" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="login">Login</label>
