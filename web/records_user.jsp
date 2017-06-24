@@ -1,15 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<?php
-session_start();
-$title = "Moje rekordy";
-$page = "records_user";
+<%
+    String title = "Wyniki";
+    String p = "records";
 
-if(!isset($_SESSION['login'])){
-header("Location: index.php");
-}
-
-require_once "parts/header.php";
-?>
+    if(session.getAttribute("login") == null){
+        response.sendRedirect("index.jsp");
+    }
+%>
+<%@include file="parts/header.jsp"%>
 
 <section class="records">
 
@@ -91,6 +89,4 @@ require_once "parts/header.php";
 </section>
 
 
-<?php
-require_once "parts/footer.php";
-?>
+<%@include file="parts/footer.jsp"%>
