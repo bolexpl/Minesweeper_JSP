@@ -16,6 +16,10 @@
         <servlet-name>Register</servlet-name>
         <servlet-class>servlets.Register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddRecord</servlet-name>
+        <servlet-class>servlets.AddRecord</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -29,5 +33,9 @@
     <servlet-mapping>
         <servlet-name>Register</servlet-name>
         <url-pattern>/servlet/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRecord</servlet-name>
+        <url-pattern>/servlet/add_record</url-pattern>
     </servlet-mapping>
 </web-app>

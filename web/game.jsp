@@ -4,7 +4,7 @@
     String p = "game";
 
     if (session.getAttribute("login") == null) {
-        response.sendRedirect("login_form.php?back=game");
+        response.sendRedirect("login_form.jsp?back=game");
     }
 %>
 
@@ -12,7 +12,7 @@
 
 <section class="board" id="container">
 
-    <%@include file="form.php" %>
+    <%@include file="form.jsp" %>
 
 </section>
 

@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-xs-12">
         <form method="post"
-              action="servlet/login<%= request.getParameter("back") != null ? " ?back=" + request.getParameter("back") : "" %>">
+              action="servlet/login<%= request.getParameter("back") != null ? "?back=" + request.getParameter("back") : "" %>">
 
             <div class="form-group">
                 <label for="login">Login lub email</label>

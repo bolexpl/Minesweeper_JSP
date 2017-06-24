@@ -9,9 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.nio.file.Paths;
 import java.sql.*;
 
 @WebServlet(name = "Register")
@@ -35,7 +32,6 @@ public class Register extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        PrintWriter out = response.getWriter();
 
         if (session.getAttribute("error") != null) {
             session.removeAttribute("error");

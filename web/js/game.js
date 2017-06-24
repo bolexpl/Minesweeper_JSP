@@ -44,7 +44,7 @@ function win() {
 
         $.ajax({
             type: "POST",
-            url: "api/add_record.php",
+            url: "servlet/add_record",
             dataType: "json",
             data: {
                 time: time,
@@ -264,7 +264,6 @@ function createBoard() {
             tr.append(pola[i][j].td);
         }
     }
-    // generateMines();
 }
 
 function setVariables() {
@@ -277,6 +276,7 @@ function setVariables() {
         if (width.trim() === "" || height.trim() === "" || countMines.trim() === "" ||
             parseInt(width) <= 3 || parseInt(height) <= 3 || parseInt(countMines) <= 3
         ) {
+            alert("Złe wartości");
             return false;
         }
 
@@ -317,7 +317,7 @@ function start() {
     play = true;
     first = true;
     $.get(
-        "board.php",
+        "board.jsp",
         {},
         function (data) {
             $("#container").html(data);
@@ -342,7 +342,7 @@ function start() {
 function back() {
     clearInterval(thread);
     $.get(
-        "form.php",
+        "form.jsp",
         {},
         function (data) {
             $("#container").html(data);
@@ -362,4 +362,3 @@ function back() {
         }
     );
 }
-

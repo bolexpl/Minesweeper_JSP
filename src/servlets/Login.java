@@ -18,7 +18,6 @@ public class Login extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
 
         if (session.getAttribute("error") != null) {
@@ -66,6 +65,7 @@ public class Login extends HttpServlet {
 
             ps.close();
             connection.close();
+
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
             session.setAttribute("error","Błąd logowania");

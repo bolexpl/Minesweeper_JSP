@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Tools {
 
-    public static final String DB_URL = "jdbc:mysql://localhost:3306/Minesweeper_Web";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/Minesweeper_JSP";
     public static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     public static final String DB_USER = "root";
     public static final String DB_PASS = "";

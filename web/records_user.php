@@ -12,7 +12,7 @@ require_once "parts/header.php";
 
 <section class="records">
 
-  <form method="post" action="api/set_avatar.php" enctype="multipart/form-data">
+  <form method="post" action="servlets/set_avatar" enctype="multipart/form-data">
 
     <div class="form-group" style="width: 50%;">
       <label for="width">Zmiana awatara</label>

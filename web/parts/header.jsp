@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li <%= p.equals("records") ? "class=\"active\"" : "" %>>
-                        <a href="records.php">Wyniki <%= p == "records" ? "<span class=\"sr-only\">(current)</span>" : "" %>
+                        <a href="records.jsp">Wyniki <%= p == "records" ? "<span class=\"sr-only\">(current)</span>" : "" %>
                         </a>
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
                         </li>
                     </ul>
                     <div class="btn-group" role="group">
-                        <a href="/servlet/logout">
+                        <a href="servlet/logout">
                             <button type="button" class="btn btn-default navbar-btn">
                                 Wyloguj
                             </button>
