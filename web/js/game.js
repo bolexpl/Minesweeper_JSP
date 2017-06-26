@@ -182,7 +182,6 @@ function generateNumbers() {
                     }
                 }
                 pola[i][j].val = count;
-                // $(pola[i][j].td).addClass("field"+count);
             }
         }
     }
@@ -208,7 +207,6 @@ function generateMines(x, y) {
             );
 
         pola[randY][randX].val = -1;
-        // $(pola[randY][randX].td).addClass("mine");
     }
     generateNumbers();
 }

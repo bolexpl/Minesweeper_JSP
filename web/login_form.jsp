@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label for="login">Login lub email</label>
                 <input type="text" name="login" class="form-control" title="Login lub email" id="login"
-                       placeholder="Login lub email" required>
+                       placeholder="Login lub email" required autofocus>
             </div>
 
             <div class="form-group">

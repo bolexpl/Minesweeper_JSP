@@ -13,7 +13,7 @@
 
 <section class="records">
 
-    <form method="post" action="servlets/set_avatar" enctype="multipart/form-data">
+    <form method="post" action="servlet/set_avatar" enctype="multipart/form-data">
 
         <div class="form-group" style="width: 50%;">
             <label for="avatar">Zmiana awatara</label>

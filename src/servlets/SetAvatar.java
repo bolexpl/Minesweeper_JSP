@@ -1,27 +1,35 @@
 package servlets;
 
-import tools.BCrypt;
 import tools.Tools;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.File;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-@WebServlet(name = "Register")
+@WebServlet(name = "SetAvatar")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10,    // 10 MB
         maxFileSize = 1024 * 1024 * 50,                    // 50 MB
         maxRequestSize = 1024 * 1024 * 100)            // 100 MB
-public class Register extends HttpServlet {
+public class SetAvatar extends HttpServlet {
 
     private static final long serialVersionUID = 205242440643911308L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+
+        if (session.getAttribute("login") == null) {
+            response.sendRedirect("index.jsp");
+        }
 
         if (session.getAttribute("error") != null) {
             session.removeAttribute("error");
@@ -30,10 +38,6 @@ public class Register extends HttpServlet {
             session.removeAttribute("success");
         }
 
-        String login = request.getParameter("login");
-        String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
-
         Connection connection;
         PreparedStatement ps;
         String sql;
@@ -41,43 +45,30 @@ public class Register extends HttpServlet {
             Class.forName(Tools.DB_DRIVER).newInstance();
             connection = DriverManager.getConnection(Tools.DB_URL, Tools.DB_USER, Tools.DB_PASS);
 
-            sql = "select * from users where login=? or email=?;";
+            String fileName = Tools.saveFile(request);
+
+            sql = "UPDATE users SET `avatar`=? WHERE id=?";
             ps = connection.prepareStatement(sql);
-            ps.setString(1, login);
-            ps.setString(2, email);
+            ps.setString(1, fileName);
+            ps.setInt(2, Integer.parseInt((String) session.getAttribute("id")));
 
-            if (!ps.executeQuery().next()) {
-                String fileName = Tools.saveFile(request);
+            ps.execute();
 
-                sql = "INSERT INTO users (login, email, pass, avatar) VALUE (?, ?, ?, ?);";
-                ps = connection.prepareStatement(sql);
-                ps.setString(1, login);
-                ps.setString(2, email);
-                ps.setString(3, BCrypt.hashpw(pass, BCrypt.gensalt()));
-                ps.setString(4, fileName);
+            session.setAttribute("success", "Zmieniono awatar");
+            session.setAttribute("avatar", fileName);
 
-                ps.execute();
-
-                session.setAttribute("success", "Zarejestrowano. Można się zalogować");
-            } else {
-                session.setAttribute("error", "Email lub login zajęty.");
-            }
             ps.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
-            session.setAttribute("error", "Błąd logowania");
+            session.setAttribute("error", "Błąd bazy danych");
         }
 
-        if(session.getAttribute("error") != null){
-            response.sendRedirect("../register_form.jsp");
-        }else{
-            response.sendRedirect("../index.jsp");
-        }
+        response.sendRedirect("../records_user.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.sendRedirect("../index.jsp");
+        response.sendRedirect("index.jsp");
     }
 }

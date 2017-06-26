@@ -1,4 +1,4 @@
-package servlets;
+package api;
 
 import tools.Tools;
 
@@ -50,7 +50,5 @@ public class AddRecord extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//        doPost(request, response);
     }
 }

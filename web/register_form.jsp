@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label for="login">Login</label>
                 <input type="text" name="login" class="form-control" title="Login" id="login" placeholder="Login"
-                       required>
+                       required autofocus>
             </div>
 
             <div class="form-group">
