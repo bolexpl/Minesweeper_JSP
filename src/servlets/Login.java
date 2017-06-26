@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
-            session.setAttribute("error","Błąd logowania");
+            session.setAttribute("error","Błąd bazy danych");
         }
 
         if(session.getAttribute("error") != null){
