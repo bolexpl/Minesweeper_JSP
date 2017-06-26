@@ -44,7 +44,7 @@ function win() {
 
         $.ajax({
             type: "POST",
-            url: "servlet/add_record",
+            url: "api/add_record",
             dataType: "json",
             data: {
                 time: time,

@@ -95,11 +95,11 @@
                 <%=resultSet.getString("login")%>
             </td>
             <%--<td>--%>
-                <%--<a href="servlet/delete_record?id=<%=resultSet.getInt("id")%>&page=records&param1=board&param2=<%=request.getParameter("board")%>">--%>
-                    <%--<button type="button" class="btn btn-danger">--%>
-                        <%--Usuń--%>
-                    <%--</button>--%>
-                <%--</a>--%>
+            <%--<a href="servlet/delete_record?id=<%=resultSet.getInt("id")%>&page=records&param1=board&param2=<%=request.getParameter("board")%>">--%>
+            <%--<button type="button" class="btn btn-danger">--%>
+            <%--Usuń--%>
+            <%--</button>--%>
+            <%--</a>--%>
             <%--</td>--%>
         </tr>
         <%

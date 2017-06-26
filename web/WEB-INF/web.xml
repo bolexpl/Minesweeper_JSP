@@ -17,10 +17,6 @@
         <servlet-class>servlets.Register</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddRecord</servlet-name>
-        <servlet-class>api.AddRecord</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DeleteRevord</servlet-name>
         <servlet-class>servlets.DeleteRecord</servlet-class>
     </servlet>
@@ -29,6 +25,12 @@
         <servlet-class>servlets.SetAvatar</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>AddRecord</servlet-name>
+        <servlet-class>api.AddRecord</servlet-class>
+    </servlet>
+
+    <!--##################################################33-->
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -43,15 +45,16 @@
         <url-pattern>/servlet/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddRecord</servlet-name>
-        <url-pattern>/servlet/add_record</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DeleteRevord</servlet-name>
         <url-pattern>/servlet/delete_record</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SetAvatar</servlet-name>
-        <url-pattern>/api/set_avatar</url-pattern>
+        <url-pattern>/servlet/set_avatar</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AddRecord</servlet-name>
+        <url-pattern>/api/add_record</url-pattern>
     </servlet-mapping>
 </web-app>

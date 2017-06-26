@@ -7,7 +7,14 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
+<%
+    if (p.equals("game")) {
+%>
 <script src="js/<%= p %>.js"></script>
+<%
+    }
+%>
+
 
 </body>
 </html>
