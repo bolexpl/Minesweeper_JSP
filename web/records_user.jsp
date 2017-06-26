@@ -69,7 +69,7 @@
             <td><%= resultSet.getInt("czas")%>s</td>
             <td><%= resultSet.getString("board")%></td>
             <td>
-                <a href="php/delete_record.php?id=<%= resultSet.getInt("id") %>&page=records_user">
+                <a href="servlet/delete_record?id=<%= resultSet.getInt("id") %>&page=records_user">
                     <button type="button" class="btn btn-danger">Usuń</button>
                 </a>
             </td>

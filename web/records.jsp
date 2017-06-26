@@ -76,7 +76,7 @@
             <td>Czas</td>
             <td>Plansza</td>
             <td>Gracz</td>
-            <td></td>
+            <%--<td></td>--%>
         </tr>
         </thead>
         <tbody>
@@ -94,13 +94,13 @@
                 <img src="avatars/<%=resultSet.getString("avatar")%>" alt="" class="avatar">
                 <%=resultSet.getString("login")%>
             </td>
-            <td>
-                <a href="php/delete_record.php?id=<%=resultSet.getInt("id")%>&page=records&param1=board&param2=<%=request.getParameter("board")%>">
-                    <button type="button" class="btn btn-danger">
-                        Usuń
-                    </button>
-                </a>
-            </td>
+            <%--<td>--%>
+                <%--<a href="servlet/delete_record?id=<%=resultSet.getInt("id")%>&page=records&param1=board&param2=<%=request.getParameter("board")%>">--%>
+                    <%--<button type="button" class="btn btn-danger">--%>
+                        <%--Usuń--%>
+                    <%--</button>--%>
+                <%--</a>--%>
+            <%--</td>--%>
         </tr>
         <%
             } while (resultSet.next());
