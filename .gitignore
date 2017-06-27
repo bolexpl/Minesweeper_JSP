@@ -1,3 +1,7 @@
 .gitignore
 .idea/workspace.xml
 out/
+/web/avatars/
+!/web/avatars/no_avatar.jpg
+.idea/dataSources.local.xml
+.idea/dataSources/
