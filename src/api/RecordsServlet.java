@@ -21,7 +21,6 @@ public class RecordsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
 
         JSONObject obj = new JSONObject();

@@ -20,7 +20,7 @@ public class AddRecordServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if(session.getAttribute("id") == null){
-            out.print("{\"error\": \"login\"}");
+            out.print("{\"error\": \"nie zalogowany\"}");
             return;
         }
 

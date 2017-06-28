@@ -21,6 +21,11 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
 
+        if(session.getAttribute("id") == null){
+            out.print("{\"error\": \"nie zalogowany\"}");
+            return;
+        }
+
         JSONObject obj = new JSONObject();
         if (session.getAttribute("login") != null) {
             session.removeAttribute("id");
