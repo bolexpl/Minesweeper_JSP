@@ -9,6 +9,8 @@
 
 <section class="index">
 
+    <a href="api_debug.jsp">api_debug</a><br/>
+
     <div class="row">
 
         <div class="col-xs-12">

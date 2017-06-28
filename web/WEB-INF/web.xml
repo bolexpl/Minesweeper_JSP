@@ -25,12 +25,7 @@
         <servlet-class>servlets.SetAvatar</servlet-class>
     </servlet>
 
-    <servlet>
-        <servlet-name>AddRecord</servlet-name>
-        <servlet-class>api.AddRecord</servlet-class>
-    </servlet>
-
-    <!--##################################################33-->
+    <!--###########################################-->
 
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -53,8 +48,50 @@
         <url-pattern>/servlet/set_avatar</url-pattern>
     </servlet-mapping>
 
+    <!--############################################################-->
+    <!--############################################################-->
+
+    <servlet>
+        <servlet-name>AddRecordServlet</servlet-name>
+        <servlet-class>api.AddRecordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>api.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>api.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>api.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetAvatarServlet</servlet-name>
+        <servlet-class>api.SetAvatarServlet</servlet-class>
+    </servlet>
+
+    <!--############################################-->
+
     <servlet-mapping>
-        <servlet-name>AddRecord</servlet-name>
+        <servlet-name>AddRecordServlet</servlet-name>
         <url-pattern>/api/add_record</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/api/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/api/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/api/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetAvatarServlet</servlet-name>
+        <url-pattern>/api/set_avatar</url-pattern>
     </servlet-mapping>
 </web-app>
