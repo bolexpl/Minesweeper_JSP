@@ -18,7 +18,7 @@
 
     <hr/>
 
-    <%--<a href="api/records">rekords</a><br/>--%>
+    <a href="api/records">rekords</a><br/>
     <%--<a href="api/records?board=8x8">rekords 8x8</a><br/>--%>
     <%--<br/>--%>
     <%--<a href="api/records_user">rekords_user</a><br/>--%>

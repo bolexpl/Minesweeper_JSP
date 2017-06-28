@@ -75,6 +75,10 @@
         <servlet-name>DeleteRecordServlet</servlet-name>
         <servlet-class>api.DeleteRecordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecordsServlet</servlet-name>
+        <servlet-class>api.RecordsServlet</servlet-class>
+    </servlet>
 
     <!--############################################-->
 
@@ -101,5 +105,9 @@
     <servlet-mapping>
         <servlet-name>DeleteRecordServlet</servlet-name>
         <url-pattern>/api/delete_record</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecordsServlet</servlet-name>
+        <url-pattern>/api/records</url-pattern>
     </servlet-mapping>
 </web-app>
