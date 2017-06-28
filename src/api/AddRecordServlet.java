@@ -19,6 +19,11 @@ public class AddRecordServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
 
+        if(session.getAttribute("id") == null){
+            out.print("{\"error\": \"login\"}");
+            return;
+        }
+
         int userId = Integer.parseInt((String) session.getAttribute("id"));
         int time = Integer.parseInt(request.getParameter("time"));
         String board = request.getParameter("board");

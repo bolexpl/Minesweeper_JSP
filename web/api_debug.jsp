@@ -93,34 +93,34 @@
 
     <hr/>
     Dodawanie rekordu:<br/>
-    <%--<form method="post" action="api/add_record">--%>
+    <form method="post" action="api/add_record">
 
-        <%--<div class="form-group" style="width: 50%;">--%>
-            <%--Czas:--%>
-            <%--<input type="number" name="time" class="form-control" value="50">--%>
-        <%--</div>--%>
+        <div class="form-group" style="width: 50%;">
+            Czas:
+            <input type="number" name="time" class="form-control" value="50">
+        </div>
 
-        <%--<div class="form-group" style="width: 50%;">--%>
-            <%--Plansza:--%>
-            <%--<input type="text" name="board" class="form-control" value="20x20">--%>
-        <%--</div>--%>
+        <div class="form-group" style="width: 50%;">
+            Plansza:
+            <input type="text" name="board" class="form-control" value="20x20">
+        </div>
 
-        <%--<button class="btn btn-default" type="submit" style="display: inline-block;">Dodaj</button>--%>
+        <button class="btn btn-default" type="submit" style="display: inline-block;">Dodaj</button>
 
-    <%--</form>--%>
+    </form>
 
     <hr/>
-    <%--Usuwanie rekordu:<br/>--%>
-    <%--<form method="get" action="api/delete_record">--%>
+    Usuwanie rekordu:<br/>
+    <form method="get" action="api/delete_record">
 
-        <%--<div class="form-group" style="width: 50%;">--%>
-            <%--Id:--%>
-            <%--<input type="text" name="id" class="form-control" value="58">--%>
-        <%--</div>--%>
+        <div class="form-group" style="width: 50%;">
+            Id:
+            <input type="text" name="id" class="form-control" value="58">
+        </div>
 
-        <%--<button class="btn btn-default" type="submit" style="display: inline-block;">Usuń</button>--%>
+        <button class="btn btn-default" type="submit" style="display: inline-block;">Usuń</button>
 
-    <%--</form>--%>
+    </form>
 
 </div>
 </body>

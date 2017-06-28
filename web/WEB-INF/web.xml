@@ -71,6 +71,10 @@
         <servlet-name>SetAvatarServlet</servlet-name>
         <servlet-class>api.SetAvatarServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteRecordServlet</servlet-name>
+        <servlet-class>api.DeleteRecordServlet</servlet-class>
+    </servlet>
 
     <!--############################################-->
 
@@ -93,5 +97,9 @@
     <servlet-mapping>
         <servlet-name>SetAvatarServlet</servlet-name>
         <url-pattern>/api/set_avatar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteRecordServlet</servlet-name>
+        <url-pattern>/api/delete_record</url-pattern>
     </servlet-mapping>
 </web-app>
