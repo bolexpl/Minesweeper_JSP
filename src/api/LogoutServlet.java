@@ -1,6 +1,9 @@
 package api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONObject;
+import tools.JSONResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,19 +27,22 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
 
-        if(session.getAttribute("id") == null){
-            out.print("{\"error\": \"nie zalogowany\"}");
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        JSONResponse obj = new JSONResponse();
+
+        if (session.getAttribute("id") == null) {
+            obj.setError("Nie jesteś zalogowany");
+            out.print(gson.toJson(obj));
             return;
         }
 
-        JSONObject obj = new JSONObject();
         if (session.getAttribute("login") != null) {
             session.removeAttribute("id");
             session.removeAttribute("login");
             session.removeAttribute("avatar");
-            obj.put("success", "Wylogowano");
+            obj.setSuccess(true);
         }
 
-        out.print(obj);
+        out.print(gson.toJson(obj));
     }
 }

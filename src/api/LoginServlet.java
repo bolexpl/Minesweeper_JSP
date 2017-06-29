@@ -1,10 +1,14 @@
 package api;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import tools.BCrypt;
+import tools.JSONResponse;
 import tools.Tools;
+import tools.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,11 +30,11 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
 
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        JSONResponse obj = new JSONResponse();
+
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
-
-        JSONObject obj = new JSONObject();
-        obj.put("error", null);
 
         Connection connection;
         PreparedStatement ps;
@@ -52,20 +56,24 @@ public class LoginServlet extends HttpServlet {
                 String hash = resultSet.getString("pass");
                 hash = hash.substring(0, 2) + "a" + hash.substring(3);
                 if (BCrypt.checkpw(pass, hash)) {
-                    obj.put("success", "Zalogowano");
-                    obj.put("id", resultSet.getString("id"));
-                    obj.put("login", resultSet.getString("login"));
-                    obj.put("avatar", resultSet.getString("avatar"));
+
+                    User user = new User(
+                            Integer.parseInt((String) resultSet.getString("id")),
+                            resultSet.getString("login"),
+                            resultSet.getString("avatar"));
+
+                    obj.setUser(user);
+                    obj.setSuccess(true);
 
                     session.setAttribute("id", resultSet.getString("id"));
                     session.setAttribute("login", resultSet.getString("login"));
                     session.setAttribute("avatar", resultSet.getString("avatar"));
                 } else {
-                    obj.put("error", "Zły login lub hasło");
+                    obj.setError("Zły login lub hasło");
                 }
 
             } else {
-                obj.put("error", "Zły login lub hasło");
+                obj.setError("Zły login lub hasło");
             }
 
             ps.close();
@@ -73,10 +81,10 @@ public class LoginServlet extends HttpServlet {
 
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
-            obj.put("error", "Błąd bazy danych");
+            obj.setError("Błąd bazy danych");
         }
 
-        out.print(obj);
+        out.print(gson.toJson(obj));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
