@@ -5,24 +5,16 @@ import java.util.ArrayList;
 public class JSONResponse {
     private String error;
     private String empty;
+    private boolean success;
     private ArrayList<Record> data;
+    private User user;
 
     public JSONResponse() {
         this.error = null;
         this.empty = null;
+        this.success = false;
         this.data = null;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public String getEmpty() {
-        return empty;
-    }
-
-    public ArrayList<Record> getData() {
-        return data;
+        this.user=null;
     }
 
     public void setError(String error) {
@@ -35,5 +27,13 @@ public class JSONResponse {
 
     public void setData(ArrayList<Record> data) {
         this.data = data;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
