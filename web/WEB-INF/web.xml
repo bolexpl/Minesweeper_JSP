@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>servlets.Login</servlet-class>
@@ -83,6 +84,10 @@
         <servlet-name>RecordsUserServlet</servlet-name>
         <servlet-class>api.RecordsUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>api.TestServlet</servlet-class>
+    </servlet>
 
     <!--############################################-->
 
@@ -117,5 +122,9 @@
     <servlet-mapping>
         <servlet-name>RecordsUserServlet</servlet-name>
         <url-pattern>/api/records_user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/api/test</url-pattern>
     </servlet-mapping>
 </web-app>

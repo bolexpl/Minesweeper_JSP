@@ -27,6 +27,9 @@ public class SetAvatarServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
 

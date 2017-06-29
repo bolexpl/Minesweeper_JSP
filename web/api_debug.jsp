@@ -1,3 +1,5 @@
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="com.google.gson.GsonBuilder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pl">
@@ -13,6 +15,10 @@
 </head>
 <body>
 <div class="container">
+
+    <a href="api/test"><h1>API test</h1></a>
+
+    <hr/>
 
     <h1>API test | <%=session.getAttribute("login") != null? "Zalogowany jako: "+session.getAttribute("login") : "Wylogowany"%></h1>
 
