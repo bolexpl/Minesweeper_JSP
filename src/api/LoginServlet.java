@@ -2,9 +2,6 @@ package api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import tools.BCrypt;
 import tools.JSONResponse;
 import tools.Tools;
