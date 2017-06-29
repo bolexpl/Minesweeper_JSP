@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Minesweeper_JSP@localhost" uuid="1f3e4bb5-875e-411b-83ca-2032d35a050d">
+    <data-source source="LOCAL" name="Minesweeper_JSP@localhost" uuid="baf8e3a2-46f6-4d0e-86cb-b1d42d8c8a35">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
