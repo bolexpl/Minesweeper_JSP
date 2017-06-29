@@ -11,4 +11,8 @@ public class User {
         this.login = login;
         this.avatar = avatar;
     }
+
+    public User(String avatar) {
+        this.avatar = avatar;
+    }
 }

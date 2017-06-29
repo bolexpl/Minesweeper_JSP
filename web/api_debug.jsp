@@ -16,7 +16,7 @@
 <body>
 <div class="container">
 
-    <a href="api/test"><h1>API test</h1></a>
+    <a href="api/test"><h1>GSON test</h1></a>
 
     <hr/>
 

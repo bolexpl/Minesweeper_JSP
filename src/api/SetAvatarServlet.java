@@ -1,7 +1,10 @@
 package api;
 
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import tools.JSONResponse;
 import tools.Tools;
+import tools.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -33,13 +36,14 @@ public class SetAvatarServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
 
-        if(session.getAttribute("id") == null){
-            out.print("{\"error\": \"nie zalogowany\"}");
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        JSONResponse obj = new JSONResponse();
+
+        if (session.getAttribute("id") == null) {
+            obj.setError("Musisz się zalogować");
+            out.print(gson.toJson(obj));
             return;
         }
-
-        JSONObject obj = new JSONObject();
-        obj.put("error", null);
 
         Connection connection;
         PreparedStatement ps;
@@ -57,18 +61,18 @@ public class SetAvatarServlet extends HttpServlet {
 
             ps.execute();
 
-            obj.put("success","Zmieniono awatar");
+            obj.setSuccess(true);
             session.setAttribute("avatar", fileName);
-            obj.put("avatar",fileName);
+            obj.setUser(new User(fileName));
 
             ps.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
-            obj.put("error","Błąd bazy danych");
+            obj.setError("Błąd bazy danych");
         }
 
-        out.print(obj);
+        out.print(gson.toJson(obj));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

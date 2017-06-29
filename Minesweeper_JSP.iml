@@ -21,7 +21,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.0.32 (Ubuntu)" level="application_server_libraries" />
     <orderEntry type="library" name="mysql-connector" level="project" />
-    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
     <orderEntry type="library" name="gson-2.2.2" level="project" />
   </component>
 </module>
