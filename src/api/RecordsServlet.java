@@ -58,7 +58,18 @@ public class RecordsServlet extends HttpServlet {
                 }
             }
 
+            if(request.getParameter("page") != null && request.getParameter("limit") != null){
+                sql+=" LIMIT ?, ?";
+            }
+
             ps = connection.prepareStatement(sql);
+
+            if(request.getParameter("page") != null && request.getParameter("limit") != null){
+                int offset = Integer.parseInt(request.getParameter("page"))*Integer.parseInt(request.getParameter("limit"));
+                ps.setInt(1, offset);
+                ps.setInt(2, Integer.parseInt(request.getParameter("limit")));
+            }
+
             resultSet = ps.executeQuery();
 
             if (!resultSet.next()) {

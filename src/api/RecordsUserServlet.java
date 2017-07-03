@@ -54,8 +54,19 @@ public class RecordsUserServlet extends HttpServlet {
             Class.forName(Tools.DB_DRIVER).newInstance();
             connection = DriverManager.getConnection(Tools.DB_URL, Tools.DB_USER, Tools.DB_PASS);
 
+            if(request.getParameter("page") != null && request.getParameter("limit") != null){
+                sql+=" LIMIT ?, ?";
+            }
+
             ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
+
+            if(request.getParameter("page") != null && request.getParameter("limit") != null){
+                int offset = Integer.parseInt(request.getParameter("page"))*Integer.parseInt(request.getParameter("limit"));
+                ps.setInt(2, offset);
+                ps.setInt(3, Integer.parseInt(request.getParameter("limit")));
+            }
+
             resultSet = ps.executeQuery();
 
             if (!resultSet.next()) {
