@@ -1,7 +1,9 @@
 package api;
 
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import tools.BCrypt;
+import tools.JSONResponse;
 import tools.Tools;
 
 import javax.servlet.ServletException;
@@ -28,6 +30,9 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
 
@@ -35,8 +40,8 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String pass = request.getParameter("pass");
 
-        JSONObject obj = new JSONObject();
-        obj.put("error", null);
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        JSONResponse obj = new JSONResponse();
 
         Connection connection;
         PreparedStatement ps;
@@ -62,19 +67,19 @@ public class RegisterServlet extends HttpServlet {
 
                 ps.execute();
 
-                obj.put("success", "Zarejestrowano. Można się zalogować");
+                obj.setSuccess(true);
             } else {
-                obj.put("error", "Email lub login zajęty");
+                obj.setError("Email lub login zajęty");
             }
             ps.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
             session.setAttribute("error", "Błąd logowania");
-            obj.put("error", "Błąd logowania");
+            obj.setError("Błąd logowania");
         }
 
-        out.print(obj);
+        out.print(gson.toJson(obj));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,3 +1,5 @@
+<%@ page import="com.google.gson.Gson" %>
+<%@ page import="com.google.gson.GsonBuilder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pl">
@@ -14,11 +16,15 @@
 <body>
 <div class="container">
 
-    <h1>API test | <%=session.getAttribute("login") != null? "Zalogowany jako: "+session.getAttribute("login") : "Wylogowany"%></h1>
+    <h1>API test
+        | <%=session.getAttribute("login") != null ? "Zalogowany jako: " + session.getAttribute("login") : "Wylogowany"%>
+    </h1>
 
     <hr/>
 
     <a href="api/records">rekords</a><br/>
+    <a href="api/records?page=0&limit=2">rekords</a><br/>
+    <a href="api/records?page=1&limit=2">rekords</a><br/>
     <a href="api/records?board=8x8">rekords 8x8</a><br/>
     <br/>
     <a href="api/records_user">rekords_user</a><br/>
@@ -65,7 +71,8 @@
 
         <div class="form-group">
             <label for="pass">Hasło</label>
-            <input type="password" name="pass" class="form-control" title="Hasło" id="pass" placeholder="Hasło" value="api"
+            <input type="password" name="pass" class="form-control" title="Hasło" id="pass" placeholder="Hasło"
+                   value="api"
                    required>
         </div>
 

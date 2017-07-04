@@ -1,6 +1,8 @@
 package api;
 
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import tools.JSONResponse;
 import tools.Tools;
 
 import javax.servlet.ServletException;
@@ -23,41 +25,45 @@ public class DeleteRecordServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
 
-        if(session.getAttribute("id") == null){
+        JSONResponse obj = new JSONResponse();
+
+        if (session.getAttribute("id") == null) {
             out.print("{\"error\": \"nie zalogowany\"}");
             return;
         }
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        JSONObject obj = new JSONObject();
-        obj.put("error", null);
-
         Connection connection;
         PreparedStatement ps;
         String sql;
-        try{
-            sql = "DELETE FROM records WHERE id=?";
+        try {
+            sql = "DELETE FROM records WHERE id=? AND user_id=?";
             Class.forName(Tools.DB_DRIVER).newInstance();
             connection = DriverManager.getConnection(Tools.DB_URL, Tools.DB_USER, Tools.DB_PASS);
 
             ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.setInt(2, Integer.parseInt((String) session.getAttribute("id")));
             ps.execute();
 
-            obj.put("success", true);
+            obj.setSuccess(true);
 
             ps.close();
             connection.close();
 
-        }catch (ClassNotFoundException | IllegalAccessException
-                | InstantiationException | SQLException e){
-            obj.put("error", "Błąd bazy danych");
+        } catch (ClassNotFoundException | IllegalAccessException
+                | InstantiationException | SQLException e) {
+            obj.setError("Błąd bazy danych");
         }
 
-        out.print(obj);
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        out.print(gson.toJson(obj));
     }
 }

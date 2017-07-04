@@ -5,13 +5,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.ArrayList;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import tools.JSONResponse;
+import tools.Record;
 import tools.Tools;
 
 @WebServlet(name = "RecordsServlet")
@@ -21,13 +23,13 @@ public class RecordsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("application/json; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         PrintWriter out = response.getWriter();
 
-        JSONObject obj = new JSONObject();
-        JSONArray data = new JSONArray();
-        obj.put("error", null);
-        obj.put("empty", null);
-        obj.put("data", data);
+        JSONResponse obj = new JSONResponse();
+        ArrayList<Record> data = new ArrayList<>();
 
         Connection connection;
         PreparedStatement ps;
@@ -56,33 +58,45 @@ public class RecordsServlet extends HttpServlet {
                 }
             }
 
+            if(request.getParameter("page") != null && request.getParameter("limit") != null){
+                sql+=" LIMIT ?, ?";
+            }
+
             ps = connection.prepareStatement(sql);
+
+            if(request.getParameter("page") != null && request.getParameter("limit") != null){
+                int offset = Integer.parseInt(request.getParameter("page"))*Integer.parseInt(request.getParameter("limit"));
+                ps.setInt(1, offset);
+                ps.setInt(2, Integer.parseInt(request.getParameter("limit")));
+            }
+
             resultSet = ps.executeQuery();
 
             if (!resultSet.next()) {
-                obj.put("empty", "Brak wyników");
+                obj.setEmpty("Brak wyników");
             } else {
                 do {
-                    JSONObject row = new JSONObject();
+                    Record r = new Record(
+                            resultSet.getInt("id"),
+                            Integer.parseInt(resultSet.getString("user_id")),
+                            resultSet.getInt("czas"),
+                            resultSet.getString("board"),
+                            resultSet.getString("login")
+                    );
+                    data.add(r);
 
-                    row.put("id", resultSet.getInt("id"));
-                    row.put("czas", resultSet.getInt("czas"));
-                    row.put("board", resultSet.getString("board"));
-                    row.put("avatar", resultSet.getString("avatar"));
-                    row.put("login", resultSet.getString("login"));
-                    row.put("user_id", resultSet.getString("user_id"));
-
-                    data.add(row);
                 } while (resultSet.next());
 
+                obj.setData(data);
             }
             ps.close();
             connection.close();
         } catch (SQLException | ClassNotFoundException |
                 IllegalAccessException | InstantiationException e) {
-            obj.put("error", e.getMessage());
+            obj.setError("Błąd bazy danych");
         }
 
-        out.print(obj);
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        out.print(gson.toJson(obj));
     }
 }
